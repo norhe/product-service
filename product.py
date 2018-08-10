@@ -15,10 +15,10 @@ COL_NAME = 'products'
 PRODUCT_PORT = 'PRODUCT_PORT'
 
 def connect_to_db():
-    db_addr = os.environ.get(DB_ADDR)
-    db_port = int(os.environ.get(DB_PORT))
-    db_username = os.environ.get(DB_USER)
-    db_pw = os.environ.get(DB_PW)
+    db_addr = os.getenv(DB_ADDR, "127.0.0.1")
+    db_port = int(os.getenv(DB_PORT, "5001"))
+    db_username = os.getenv(DB_USER)
+    db_pw = os.getenv(DB_PW)
 
     if not db_addr or not db_port:
         # try default connection settings
