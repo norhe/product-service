@@ -14,7 +14,7 @@ git clone https://github.com/norhe/product-service.git
 
 cat <<EOF | sudo tee /lib/systemd/system/product.service
 [Unit]
-Description=product.py - Listing service API
+Description=product.py - Product service API
 After=network.target
 
 [Service]
