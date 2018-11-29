@@ -22,6 +22,7 @@ Type=simple
 User=ubuntu
 ExecStart=/usr/local/bin/envconsul -prefix product_conf /usr/bin/python3 /home/ubuntu/src/product-service/product.py
 Restart=always
+SyslogIdentifier=product_service
 
 [Install]
 WantedBy=multi-user.target
