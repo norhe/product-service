@@ -1,13 +1,16 @@
 #! /bin/bash
 
+# install the product service app
+sudo adduser --disabled-password --gecos "" product
+
 # install the requirements
-sudo chown -R ubuntu:ubuntu /home/ubuntu/.cache
+sudo chown -R product:product /home/product/.cache
 pip3 install flask
 pip3 install pymongo
 
 # download the apply
-mkdir /home/ubuntu/src
-cd /home/ubuntu/src
+mkdir /home/product/src
+cd /home/product/src
 git clone https://github.com/norhe/product-service.git
 
 # systemd
@@ -19,8 +22,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=ubuntu
-ExecStart=/usr/local/bin/envconsul -prefix product_conf /usr/bin/python3 /home/ubuntu/src/product-service/product.py
+User=product
+ExecStart=/usr/local/bin/envconsul -prefix product_conf /usr/bin/python3 /home/product/src/product-service/product.py
 Restart=always
 SyslogIdentifier=product_service
 
