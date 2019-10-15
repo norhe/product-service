@@ -3,6 +3,8 @@ from flask import jsonify
 from pymongo import MongoClient
 
 import os
+import socket
+_hostname = socket.gethostname()
 
 DB_ADDR = 'DB_ADDR'
 DB_PORT = 'DB_PORT'
@@ -40,6 +42,7 @@ prods = [{ 'inv_id': 1, 'name':'jncos', 'cost':35.57, 'img':None},
 @app.route("/product", methods=['GET'])
 def get_products():
     res = get_products_from_db()
+    res.insert(0, {'request_handled_by_host': _hostname })
     return jsonify(res)
 
 @app.route("/product/healthz", methods=['GET'])
